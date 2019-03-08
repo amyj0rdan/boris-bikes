@@ -32,7 +32,7 @@ describe DockingStation do
     end
 
     it 'raise an exception if there is already a bike in the docking station' do
-      20.times { subject.dock Bike.new }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
       expect{ subject.dock(Bike.new) }.to raise_error("Docking station full")
     end
 
@@ -42,25 +42,26 @@ describe DockingStation do
       expect(subject.bikes).to include my_bike
     end
   end
+  # removed tests for private methods as per instructions
 
-  describe '#full?' do
-
-    it {is_expected.to respond_to :full?}
-
-    it 'should be true if there are 20 bikes' do
-      20.times { subject.dock Bike.new }
-      expect(subject.full?).to eq true
-    end
-  end
-
-
-  describe '#empty?' do
-
-    it { is_expected.to respond_to :empty? }
-
-    it 'should be true if there are 0 bikes' do
-      expect(subject.empty?).to eq true
-    end
-
-  end
+  # describe '#full?' do
+  #
+  #   it {is_expected.to respond_to :full?}
+  #
+  #   it 'should be true if there are 20 bikes' do
+  #     20.times { subject.dock Bike.new }
+  #     expect(subject.full?).to eq true
+  #   end
+  # end
+  #
+  #
+  # describe '#empty?' do
+  #
+  #   it { is_expected.to respond_to :empty? }
+  #
+  #   it 'should be true if there are 0 bikes' do
+  #     expect(subject.empty?).to eq true
+  #   end
+  #
+  # end
 end
