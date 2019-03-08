@@ -36,11 +36,31 @@ describe DockingStation do
       expect{ subject.dock(Bike.new) }.to raise_error("Docking station full")
     end
 
-
     it 'show a bike has been docked' do
       my_bike = Bike.new
       subject.dock(my_bike)
       expect(subject.bikes).to include my_bike
     end
+  end
+
+  describe '#full?' do
+
+    it {is_expected.to respond_to :full?}
+
+    it 'should be true if there are 20 bikes' do
+      20.times { subject.dock Bike.new }
+      expect(subject.full?).to eq true
+    end
+  end
+
+
+  describe '#empty?' do
+
+    it { is_expected.to respond_to :empty? }
+
+    it 'should be true if there are 0 bikes' do
+      expect(subject.empty?).to eq true
+    end
+
   end
 end
