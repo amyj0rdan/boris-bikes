@@ -11,7 +11,12 @@ describe DockingStation do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
 
+    it 'can take a capacity from the user' do
+      station = DockingStation.new(40)
+      expect(station.capacity).to eq 40
     end
+
+  end
 
   describe '#release_bike' do
     it { is_expected.to respond_to :release_bike }
