@@ -40,9 +40,15 @@ describe DockingStation do
       expect(subject.dock(bike)).to include bike
     end
 
-    it 'raise an exception if there is already a bike in the docking station' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
+    it 'raise an exception if the docking station is full' do
+      subject.capacity.times { subject.dock Bike.new }
       expect{ subject.dock(Bike.new) }.to raise_error("Docking station full")
+    end
+
+    it 'raise an exception if the docking station is full with a variable capacity' do
+      docking_station = DockingStation.new(75)
+      75.times { docking_station.dock Bike.new }
+      expect{ docking_station.dock Bike.new }.to raise_error "Docking station full"
     end
 
     it 'show a bike has been docked' do
