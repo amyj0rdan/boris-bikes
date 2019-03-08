@@ -7,7 +7,11 @@ describe DockingStation do
       expect(subject.bikes).to eq []
     end
 
-  end
+    it 'has a default capacity' do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    end
+
+    end
 
   describe '#release_bike' do
     it { is_expected.to respond_to :release_bike }
